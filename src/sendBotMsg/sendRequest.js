@@ -1,10 +1,12 @@
 'use strict'
 const fetch = require('node-fetch')
+const path = require('path')
+const BOT_BRIDGE_URI = process.env.BOT_BRIDGE_URI
 const parseResponse = require('./parseResponse')
 
 const postRequest = async(uri, body)=>{
   try{
-    const res =  await fetch(uri, {
+    const res =  await fetch(BOT_BRIDGE_URI+'/cmd', {
       method: 'POST',
       body: JSON.stringify(body),
       timeout: 120000,
@@ -19,9 +21,9 @@ const postRequest = async(uri, body)=>{
   }
 }
 
-const sendRequest = async(uri, body, count = 0)=>{
+const sendRequest = async(body, count = 0)=>{
   try{
-    const res = await postRequest(uri, body)
+    let res = await postRequest(uri, body)
     if(res?.error === 'FetchError' && count < 11){
       count++
       return await sendRequest(uri, body, count)
@@ -31,11 +33,9 @@ const sendRequest = async(uri, body, count = 0)=>{
     console.error(e);
   }
 }
-module.exports = async(uri, body)=>{
+module.exports = async(body = {})=>{
   try{
-    if(!uri) return
-    const res = await sendRequest(uri, body)
-    return res?.body
+    return await sendRequest(body)
   }catch(e){
     console.error(e);
   }
