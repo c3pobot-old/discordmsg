@@ -1,0 +1,26 @@
+{
+  "name": "discordmsg",
+  "version": "1.0.0",
+  "description": "message que for discord ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/c3po-modules/discordmsg.git"
+  },
+  "author": "scuba75",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/c3po-modules/discordmsg/issues"
+  },
+  "homepage": "https://gitlab.com/c3po-modules/discordmsg#readme",
+  "dependencies": {
+    "bottleneck": "^2.19.5",
+    "form-data": "^4.0.0",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^2.6.9",
+    "uuid": "^8.3.2"
+  }
+}
