@@ -9,7 +9,7 @@ module.exports = async(opts = {}, data = {})=>{
 
     let res = await SendRequest(payload)
     if(res?.error) ReportError(res.error, payload)
-    return res?.body
+    return res
   }catch(e){
     console.error(e);
   }
