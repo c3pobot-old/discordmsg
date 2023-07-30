@@ -3,7 +3,7 @@ const SendRequest = require('./sendRequest')
 module.exports = async(opts = {}, data = {})=>{
   try{
     let payload = {...opts, ...data}
-    if(opts.shardId) payload.podName = 'bot-'+opts.shardId
+    if(opts.shardId >= 0) payload.podName = 'bot-'+opts.shardId
     delete payload.shardId
     payload.cmd = payload.method
 
