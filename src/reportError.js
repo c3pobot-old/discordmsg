@@ -8,7 +8,7 @@ module.exports = (obj = {}, type, opts = {})=>{
       if(opts.msgId) errMsg += ' msgId: '+opts.msgId+'\n'
       if(opts.dId) errMsg += ' dId: '+opts.dId+'\n'
       if(opts.roleId) errMsg += ' roleId: '+opts.roleId+'\n'
-      if(obj.body.message){
+      if(obj?.body?.message){
         errMsg += (type ? type+': ':'')+obj.body.message+'\n'
       }else{
         errMsg += JSON.stringify(obj)+'\n'
