@@ -14,13 +14,7 @@ module.exports = async(dId, content)=>{
     if(content?.files?.length > 0){
       for(let i in content.files) files.push({file: content.files[i].file.toString('base64'), filename: content.files[i].fileName})
     }
-    let opts = {}
-    if(obj.sId){
-      opts.sId = obj.sId
-    }else{
-      opts.shardId = 0
-    }
-    return await SendBotMsg(opts, {method: 'sendDM', dId: dId, files: files, msg: msg2send})
+    return await SendBotMsg({shardId: 0} , {method: 'sendDM', dId: dId, files: files, msg: msg2send})
   }catch(e){
     console.error(e)
   }
