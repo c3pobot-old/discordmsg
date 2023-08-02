@@ -7,6 +7,7 @@ let BOT_TOTAL_SHARDS, notify = true, retryCount = 10
 const getPodName = async(obj = {})=>{
   try{
     if(BOT_TOTAL_SHARDS === 1) return `${BOT_NODE_NAME_PREFIX}-0`
+    if(+obj.shardId >= 0) return `${BOT_NODE_NAME_PREFIX}-${obj.shardId}`
     if(!obj.sId) return
     let id = (Number(BigInt(obj.sId) >> 22n) % (+BOT_TOTAL_SHARDS))
     if(id >= 0) return `${BOT_NODE_NAME_PREFIX}-${id}`
@@ -69,6 +70,7 @@ module.exports = async(cmd, opts = {})=>{
   try{
     if(!cmd || !BOT_TOTAL_SHARDS) return
     let podName = opts.podName
+
     if(!podName) podName = await getPodName(opts)
     if(!podName) throw('Error getting podName...')
     let payload = { method: 'POST', timeout: 60000, compress: true, headers: {"Content-Type": "application/json"} }
