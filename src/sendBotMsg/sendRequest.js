@@ -70,8 +70,9 @@ module.exports = async(cmd, opts = {})=>{
   try{
     if(!cmd || !BOT_TOTAL_SHARDS) return
     let podName = opts.podName
-
+    console.log('Pre: '+podName)
     if(!podName) podName = await getPodName(opts)
+    console.log('Post: '+podName)
     if(!podName) throw('Error getting podName...')
     let payload = { method: 'POST', timeout: 60000, compress: true, headers: {"Content-Type": "application/json"} }
     payload.body = JSON.stringify({ ...opts, ...{ cmd: cmd, podName: podName } })
