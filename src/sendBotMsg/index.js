@@ -12,7 +12,7 @@ module.exports = async(opts = {}, data = {})=>{
   }catch(e){
     console.error(e);
     console.log(opts)
-    console.log(payload.podName)
+    console.log(opts.podName)
     console.log(data.method)
   }
 }
