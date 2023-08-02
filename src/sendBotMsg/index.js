@@ -12,5 +12,7 @@ module.exports = async(opts = {}, data = {})=>{
     return res
   }catch(e){
     console.error(e);
+    console.log(opts)
+    console.log(data.cmd)
   }
 }
