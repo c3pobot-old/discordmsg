@@ -5,14 +5,10 @@ module.exports = async(opts = {}, data = {})=>{
     let payload = {...opts, ...data}
     if(+opts.shardId >= 0) payload.podName = 'bot-'+opts.shardId
     payload.cmd = payload.method
-
-    let res = await SendRequest(payload)
+    let res = await SendRequest(payload.cmd, payload)
     if(res?.error) ReportError(res.error, payload)
     return res
   }catch(e){
     console.error(e);
-    console.log(opts)
-    console.log(opts.podName)
-    console.log(data.method)
   }
 }
