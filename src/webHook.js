@@ -1,9 +1,11 @@
+const path = require('path')
 const bottleneck = require('bottleneck')
 const fetch = require('node-fetch')
 const ReportError = require('./reportError')
 const FormData = require('form-data');
-const discordUrl = process.env.DISCORD_PROXY || 'https://discord.com'
-const baseUrl = discordUrl+'/api/webhooks/'+process.env.DISCORD_CLIENT_ID
+//const discordUrl = process.env.DISCORD_PROXY || 'https://discord.com'
+//const baseUrl = discordUrl+'/api/webhooks/'+process.env.DISCORD_CLIENT_ID
+const baseUrl = path.join('https://discord.com', 'api', 'webhooks', process.env.DISCORD_CLIENT_ID)
 const limiter = new bottleneck({
   minTime: 40
 })
